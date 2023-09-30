@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UseColorsData from "../../hooks/useColorsData";
+import DonationGif from "../../Assets/images/donation.gif"
 
 const Donation = () => {
   const [colorSet, setColorSet] = useState({});
@@ -47,6 +48,7 @@ const Donation = () => {
     <div className="max-w-6xl mx-auto py-10 px-3">
       {noData ? (
         <div className="min-h-[50vh] py-4 flex flex-col justify-center items-center">
+          <img src={DonationGif} alt="" className="w-full max-w-[200px] mx-auto" />
           <p className="text-xl text-center mb-2">
             You haven&apos;t donated in any program yet!
           </p>
