@@ -67,11 +67,11 @@ const Donation = () => {
               return (
                 <div
                   key={donation.id}
-                  className="flex flex-row items-center rounded-lg overflow-hidden"
+                  className="flex flex-col md:flex-row items-center rounded-lg overflow-hidden p-5 md:p-0"
                   style={{ background: colors && colors["bg"] }}
                 >
                   <img
-                    className="h-full aspect-square object-cover"
+                    className="h-full aspect-square object-cover rounded-xl md:rounded-none"
                     src={donation.square_image}
                     alt=""
                   />
