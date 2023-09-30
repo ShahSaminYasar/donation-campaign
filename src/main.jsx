@@ -1,20 +1,29 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App";
 import "./index.css";
-import Donation from "./components/Donation";
-import Home from "./components/Home";
-import Statistics from "./components/Statistics";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomeLayout from "./Layout/HomeLayout";
+import Home from "./pages/Home/Home";
+import Donation from "./pages/Donation/Donation";
+import Statistics from "./pages/Statistics/Statistics";
+import Error from "./pages/Error/Error";
+import Program from "./pages/Program/Program";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <HomeLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
         element: <Home />,
+        loader: () => {
+          const data = fetch("/data/Programs.json").then((response) =>
+            response.json()
+          );
+          return data;
+        },
       },
       {
         path: "/donation",
@@ -24,12 +33,22 @@ const router = createBrowserRouter([
         path: "/statistics",
         element: <Statistics />,
       },
+      {
+        path: "/program/:id",
+        element: <Program />,
+        loader: () => {
+          const data = fetch("/data/Programs.json").then((response) =>
+            response.json()
+          );
+          return data;
+        },
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>
 );
